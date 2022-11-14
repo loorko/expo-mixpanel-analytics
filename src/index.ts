@@ -46,14 +46,13 @@ export class ExpoMixpanelAnalytics {
         user_agent: userAgent,
       });
       if (
-        Platform.OS === "ios" &&
-        Constants.platform &&
-        Constants.platform.ios
+        Device.brand === "iOS"
       ) {
         this.platform = Device.modelId;
         this.model = Device.modelName || undefined;
       } else {
         this.platform = "android";
+        this.model = Device.modelName || undefined;
       }
 
       AsyncStorage.getItem(this.storageKey, (_, result) => {
